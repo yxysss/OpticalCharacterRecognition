@@ -30,6 +30,9 @@ def main():
     print('Create the model.')
     model = SimpleMnistModel(config)
 
+    print("Model Summary")
+    model.model.summary()
+
     print('Create the trainer')
     trainer = SimpleMnistModelTrainer(model.model, data_loader.get_train_data(), config)
 

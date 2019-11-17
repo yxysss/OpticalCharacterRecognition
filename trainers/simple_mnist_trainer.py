@@ -39,6 +39,9 @@ class SimpleMnistModelTrainer(BaseTrain):
         #     experiment.log_multiple_params(self.config)
         #     self.callbacks.append(experiment.get_keras_callback())
 
+    def summary(self):
+        self.model.summary()
+
     def train(self):
         history = self.model.fit(
             self.data[0], self.data[1],
