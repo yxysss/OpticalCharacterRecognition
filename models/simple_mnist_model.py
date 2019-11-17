@@ -19,3 +19,8 @@ class SimpleMnistModel(BaseModel):
             optimizer=self.config.model.optimizer,
             metrics=['acc'],
         )
+
+    def build_mode_datacamp(self):
+        self.model = Sequential()
+
+

@@ -13,3 +13,5 @@ Pillow
 dotmap
 python-telegram-bot
 python-prctl
+matplotlib==3.0.3
+comet_ml
