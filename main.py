@@ -50,7 +50,7 @@ def main():
     weight = './experiments/2019-11-18/conv_mnist_from_config/checkpoints/conv_mnist_from_config-03-0.01.hdf5'
     # weight = ''
     predictor = ConvMnistDataPredictor(model.model, data_loader.get_test_data(),weight)
-    predictor.predict3('./test_images/9/0.png')
+    predictor.predict3('./test_images/9/1.png')
 
 
 if __name__ == '__main__':

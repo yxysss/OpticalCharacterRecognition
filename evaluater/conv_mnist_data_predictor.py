@@ -72,6 +72,8 @@ class ConvMnistDataPredictor(BaseEvaluator):
         im2arr = im2arr.astype('float32')
         im2arr /= 255
         prediction = self.model.predict(im2arr)[0]
+        print("Prediction")
+        print(prediction)
         bestclass = ''
         bestconf = -1
         for n in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]:
