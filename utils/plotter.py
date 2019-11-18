@@ -7,5 +7,6 @@ class Plotter:
         pass
 
     def plot_image(self, image):
-        plt.imshow(image)
+        # plt.imshow(image,cmap='gray') # See in grayscale
+        plt.imshow(image) # See in grayscale
         plt.show()
