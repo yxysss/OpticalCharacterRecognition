@@ -8,12 +8,12 @@
   "model":{
     "name": "conv_mnist_model.ConvMnistModel",
     "learning_rate": 0.001,
-    "optimizer": "adadelta",
-    "loss" : "sparse_categorical_crossentropy"
+    "optimizer": "rmsprop",
+    "loss" : "binary_crossentropy"
   },
   "trainer":{
     "name": "simple_mnist_trainer.SimpleMnistModelTrainer",
-    "num_epochs": 20,
+    "num_epochs": 4,
     "batch_size": 64,
     "validation_split":0.25,
     "verbose_training": true

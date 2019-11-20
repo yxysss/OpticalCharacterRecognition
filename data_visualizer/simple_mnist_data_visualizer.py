@@ -10,4 +10,4 @@ class SimpleMnistDataVisualizer:
         self.plotter = Plotter()
 
     def plot_first_digit(self,):
-        self.plotter.plot_image(self.data[0])
+        self.plotter.plot_image(self.data[0].reshape(28,28))
