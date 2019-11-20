@@ -39,10 +39,10 @@ class ConvEMnistDataLoader(BaseDataLoader):
         test_x = test_x.astype('float32')
         self.X_test = test_x / 255
         num_classes = train_y.nunique()
+        print("NUMBER OF CLASSES")
+        print(num_classes)
         self.y_train = np_utils.to_categorical(train_y, num_classes)
         self.y_test = np_utils.to_categorical(test_y, num_classes)
-        print("X_train: ", train_y.shape)
-        print("self.y_test: ", test_y.shape)
         self.X_train = self.X_train.reshape((-1, WIDTH, HEIGHT, 1))
         self.X_test = self.X_test.reshape((-1, WIDTH, HEIGHT, 1))
 

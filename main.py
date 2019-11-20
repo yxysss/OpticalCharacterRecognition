@@ -3,6 +3,7 @@ from data_loader.conv_mnist_data_loader import ConvMnistDataLoader
 from data_loader.simple_mnist_data_loader import SimpleMnistDataLoader
 from data_visualizer.simple_mnist_data_visualizer import SimpleMnistDataVisualizer
 from evaluater.conv_mnist_data_predictor import ConvMnistDataPredictor
+from models.conv_emnist_model import ConvEMnistModel
 from models.conv_mnist_model import ConvMnistModel
 from models.simple_mnist_model import SimpleMnistModel
 from trainers.conv_mnist_trainer import ConvMnistModelTrainer
@@ -31,15 +32,15 @@ def main():
 
     # print('Some data visualization')
     X_train, y_train = data_loader.get_train_data()
-    # print("ytrain")
-    # print(y_train)
+    print("ytrain")
+    print(y_train.shape)
     mapp = data_loader.get_map()
     data_visualizer = SimpleMnistDataVisualizer(X_train, y_train, mapp)
     data_visualizer.plot_first_digit()
     data_visualizer.plot_range()
 
     print('Create the model.')
-    model = ConvMnistModel(config)
+    model = ConvEMnistModel(config)
 
     print("Model Summary")
     model.model.summary()
@@ -52,10 +53,11 @@ def main():
 
     print("Finish training")
     print("Predict")
-    # weight = './experiments/2019-11-18/conv_mnist_from_config/checkpoints/conv_mnist_from_config-03-0.01.hdf5'
+    weight = './experiments/2019-11-20/conv_emnist_from_config/checkpoints/conv_emnist_from_config-10-0.35.hdf5'
     # # weight = ''
-    # predictor = ConvMnistDataPredictor(model.model, data_loader.get_test_data(), weight)
-    # predictor.predict3('./test_images/9/1.png')
+    predictor = ConvMnistDataPredictor(model.model, data_loader.get_test_data(), mapp, weight)
+    # predictor.predict3('./test_images/l/0.png')
+    predictor.predict_from_data_set()
 
 
 if __name__ == '__main__':

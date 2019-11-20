@@ -11,8 +11,9 @@ from utils.plotter import Plotter
 
 class ConvMnistDataPredictor(BaseEvaluator):
 
-    def __init__(self, model, data, weights=''):
+    def __init__(self, model, data, map, weights=''):
         super(ConvMnistDataPredictor, self).__init__(model, data)
+        self.map = map
         self.plotter = Plotter()
         if len(weights) > 0:
             self.model.load_weights(weights)
@@ -33,16 +34,16 @@ class ConvMnistDataPredictor(BaseEvaluator):
 
     def predict_from_data_set(self):
         print("Predicting")
-        print(np.argmax(self.data[1][0]))
+        print(chr(self.map[np.argmax(self.data[1][0])]))
         test = self.data[0]
         prediction = self.model.predict(test[:4])[0]
         bestclass = ''
         bestconf = -1
-        for n in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]:
+        for n in range(47):
             if (prediction[n] > bestconf):
                 bestclass = str(n)
                 bestconf = prediction[n]
-        print('I think this digit is a ' + bestclass + ' with ' + str(bestconf * 100) + '% confidence.')
+        print('I think this digit is a ' + chr(int(self.map[int(bestclass)])) + ' with ' + str(bestconf * 100) + '% confidence.')
 
     def predict2(self, image):
         image_pre_processor = ImagePreProcessor()
