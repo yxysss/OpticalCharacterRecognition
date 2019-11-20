@@ -16,3 +16,4 @@ python-prctl
 matplotlib==3.0.3
 comet_ml
 cv2
+pandas

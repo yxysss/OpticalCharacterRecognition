@@ -5,6 +5,7 @@ import cv2
 from PIL import Image
 from scipy import ndimage
 
+from constants import HEIGHT, WIDTH
 from utils.plotter import Plotter
 
 
@@ -102,3 +103,9 @@ class ImagePreProcessor():
         M = np.float32([[1, 0, sx], [0, 1, sy]])
         shifted = cv2.warpAffine(img, M, (cols, rows))
         return shifted
+
+    def rotate(self,image):
+        image = image.reshape([HEIGHT, WIDTH])
+        image = np.fliplr(image)
+        image = np.rot90(image)
+        return image
