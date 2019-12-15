@@ -54,6 +54,7 @@ def main():
         trainer.train()
 
     print("Plot loss and accuracy in training model")
+    data_visualizer.plot_loss_acc()
 
     print("Finish training")
     print("Predict")
