@@ -16,7 +16,7 @@ class ConvMnistDataPredictor(BaseEvaluator):
         super(ConvMnistDataPredictor, self).__init__(model, data, config)
         self.map = map
         self.plotter = Plotter()
-        if config.custom_weight and len(weights) > 0:
+        if config.evaluator.custom_weight and len(weights) > 0:
             self.model.load_weights(weights)
 
     def evaluate_model(self):

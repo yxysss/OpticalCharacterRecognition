@@ -50,7 +50,10 @@ def main():
     trainer = ConvMnistModelTrainer(model.model, data_loader.get_train_data(), config)
 
     print('Start training the model.')
-    trainer.train()
+    if not config.evaluator.custom_weight:
+        trainer.train()
+
+    print("Plot loss and accuracy in training model")
 
     print("Finish training")
     print("Predict")
