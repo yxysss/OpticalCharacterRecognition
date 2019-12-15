@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 from utils.plotter import Plotter
 
@@ -29,3 +30,10 @@ class SimpleMnistDataVisualizer:
 
     def plotgraph(self, epochs, acc, val_acc):
         self.plotter.plotgraph(epochs, acc, val_acc)
+
+    def plot_loss_acc(self):
+        history_path = './experiments/2019-12-15/conv_emnist_from_config/history_params/parameters.csv'
+        data_frame = pd.read_csv(history_path, delimiter=',')
+        self.plotter.plotgraph(data_frame['epoch'].values, data_frame['acc'].values, data_frame['val_acc'])
+        self.plotter.plotgraph(data_frame['epoch'].values, data_frame['loss'].values, data_frame['val_loss'])
+
