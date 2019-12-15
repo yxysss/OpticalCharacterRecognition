@@ -49,12 +49,12 @@ def main():
     trainer = ConvMnistModelTrainer(model.model, data_loader.get_train_data(), config)
 
     print('Start training the model.')
-    # trainer.train()
+    trainer.train()
 
     print("Finish training")
     print("Predict")
-    weight = './experiments/2019-11-20/conv_emnist_from_config/checkpoints/conv_emnist_from_config-10-0.35.hdf5'
-    # # weight = ''
+    # weight = './experiments/2019-11-20/conv_emnist_from_config/checkpoints/conv_emnist_from_config-10-0.35.hdf5'
+    weight = ''
     predictor = ConvMnistDataPredictor(model.model, data_loader.get_test_data(), mapp, weight)
     # predictor.predict3('./test_images/l/0.png')
     predictor.predict_from_data_set()
