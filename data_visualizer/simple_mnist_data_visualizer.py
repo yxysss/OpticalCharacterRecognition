@@ -20,3 +20,6 @@ class SimpleMnistDataVisualizer:
             plt.imshow(self.X_train[i].reshape(28, 28), cmap=plt.get_cmap('gray'))
             plt.title(chr(self.mapp[np.argmax(self.y_train[i])]))
         plt.show()
+
+    def plotgraph(self, epochs, acc, val_acc):
+        self.plotter.plotgraph(epochs, acc, val_acc)

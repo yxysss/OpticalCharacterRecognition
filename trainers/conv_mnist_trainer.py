@@ -1,6 +1,6 @@
 from base.base_trainer import BaseTrain
 import os
-from keras.callbacks import ModelCheckpoint, TensorBoard
+from keras.callbacks import ModelCheckpoint, TensorBoard, History, CSVLogger
 
 
 class ConvMnistModelTrainer(BaseTrain):
@@ -31,6 +31,10 @@ class ConvMnistModelTrainer(BaseTrain):
                 log_dir=self.config.callbacks.tensorboard_log_dir,
                 write_graph=self.config.callbacks.tensorboard_write_graph,
             )
+        )
+
+        self.callbacks.append(
+            CSVLogger(os.path.join(self.config.callbacks.history_dir, "parameters.csv"), separator=',', append=False)
         )
 
         # if hasattr(self.config,"comet_api_key"):

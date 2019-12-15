@@ -12,6 +12,7 @@ from utils.config import process_config
 from utils.dirs import create_dirs
 from utils.utils import get_args
 import numpy as np
+import sklearn.metrics as metrics
 
 
 def main():
@@ -25,7 +26,7 @@ def main():
         exit(0)
 
     # create the experiments dirs
-    create_dirs([config.callbacks.tensorboard_log_dir, config.callbacks.checkpoint_dir])
+    create_dirs([config.callbacks.tensorboard_log_dir, config.callbacks.checkpoint_dir, config.callbacks.history_dir])
 
     print('Create the data generator.')
     data_loader = ConvEMnistDataLoader(config)
@@ -53,11 +54,18 @@ def main():
 
     print("Finish training")
     print("Predict")
-    # weight = './experiments/2019-11-20/conv_emnist_from_config/checkpoints/conv_emnist_from_config-10-0.35.hdf5'
-    weight = ''
-    predictor = ConvMnistDataPredictor(model.model, data_loader.get_test_data(), mapp, weight)
+    weight = './experiments/2019-11-20/conv_emnist_from_config/checkpoints/conv_emnist_from_config-10-0.35.hdf5'
+
+    predictor = ConvMnistDataPredictor(model.model, data_loader.get_test_data(), mapp, config, weight)
     # predictor.predict3('./test_images/l/0.png')
-    predictor.predict_from_data_set()
+    # predictor.predict_from_data_set()
+
+    """
+    Evaluate model with test set
+    """
+    predictor.evaluate_model()
+
+    predictor.confusion_matrix()
 
 
 if __name__ == '__main__':
