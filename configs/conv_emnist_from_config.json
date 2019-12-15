@@ -20,7 +20,7 @@
   },
   "evaluator": {
     "name": "conv_mnist_data_predictor.ConvMnistDataPredictor",
-    "custom_weight" : false
+    "custom_weight" : true
   },
   "callbacks": {
     "checkpoint_monitor": "val_loss",

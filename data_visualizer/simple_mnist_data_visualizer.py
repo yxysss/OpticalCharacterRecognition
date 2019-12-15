@@ -11,6 +11,12 @@ class SimpleMnistDataVisualizer:
         self.mapp = mapp
         self.plotter = Plotter()
 
+    def plot_specified_digit(self, code):
+        for i in range(self.y_train.shape[0]):
+            if (self.y_train[i, code] == 1):
+                self.plotter.plot_image(self.X_train[i].reshape(28,28))
+                break
+
     def plot_first_digit(self, ):
         self.plotter.plot_image(self.X_train[0].reshape(28, 28))
 

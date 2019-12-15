@@ -1,7 +1,8 @@
-from keras.utils import to_categorical, np_utils
+from tensorflow.keras.utils import to_categorical
+from tensorflow.python.keras import utils as np_utils
 
 from base.base_data_loader import BaseDataLoader
-from keras.datasets import mnist
+from tensorflow.keras.datasets import mnist
 import numpy as np
 import pandas as pd
 

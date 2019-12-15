@@ -105,10 +105,10 @@ class ImagePreProcessor():
                     bottom = max(bottom, i)
         length = bottom - top
         width = right - left
-        left = max(0, left - int(width / 2))
-        right = min(right + int(width / 2), img.shape[1])
-        top = max(0, top - int(length / 2))
-        bottom = min(bottom + int(length / 2), img.shape[0])
+        left = max(0, left - int(length / 2))
+        right = min(right + int(length / 2), img.shape[1])
+        top = max(0, top - int(width / 2))
+        bottom = min(bottom + int(width / 2), img.shape[0])
         print(str(left) + "," + str(right) + "," + str(top) + "," + str(bottom))
         img = img[top:bottom, left:right]
         return img
