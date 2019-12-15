@@ -14,7 +14,7 @@ class ConvEMnistModel(BaseModel):
         # Import the sequential model from keras to build a neural network
         self.model = Sequential()
 
-        # Here we are going to add a convolutional layer with 16 filters with a size of 5x5, an activation function
+        # Here we are going to add a convolutional layer with 128 filters with a size of 5x5, an activation function
         # relu, and input shape from a dimension 28x28. So this means we have an input layer, and a convolutional layer
         # at this point. Two in total :).
         self.model.add(Conv2D(filters=128, kernel_size=(5, 5), padding='same',
@@ -29,7 +29,7 @@ class ConvEMnistModel(BaseModel):
         # Flatten data to 1 dimension
         self.model.add(Flatten())
 
-        # Add a "hidden layer with 1000 neurons and a RELU activation function"
+        # Add a "hidden layer with 128 neurons and a RELU activation function"
         self.model.add(Dense(128, activation='relu'))
         self.model.add(Dropout(.5))
 

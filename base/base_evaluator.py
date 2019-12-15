@@ -1,5 +1,6 @@
 class BaseEvaluator(object):
-    def __init__(self, model, data):
+    def __init__(self, model, data, config):
+        self.config = config
         self.model = model
         self.data = data
 
