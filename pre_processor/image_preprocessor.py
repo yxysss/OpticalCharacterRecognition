@@ -22,6 +22,7 @@ class ImagePreProcessor():
         # read the image and transform to black and white
         gray = cv2.imread(image, 0)
         self.plotter.plot_image(gray)
+        gray = self.cut(gray)
         # resize the images and invert it (black background)
         gray = cv2.resize(255 - gray, (28, 28))
         self.plotter.plot_image(gray)
@@ -90,6 +91,27 @@ class ImagePreProcessor():
         # im = gray / 255
         im = gray
         return im
+
+    def cut(self, img):
+        left = img.shape[1]
+        top = img.shape[0]
+        right, bottom = 0, 0
+        for i in range(img.shape[0]):
+            for j in range(img.shape[1]):
+                if img[i, j] != 255:
+                    left = min(left, j)
+                    right = max(right, j)
+                    top = min(top, i)
+                    bottom = max(bottom, i)
+        length = bottom - top
+        width = right - left
+        left = max(0, left - int(length / 2))
+        right = min(right + int(length / 2), img.shape[1])
+        top = max(0, top - int(width / 2))
+        bottom = min(bottom + int(width / 2), img.shape[0])
+        print(str(left) + "," + str(right) + "," + str(top) + "," + str(bottom))
+        img = img[top:bottom, left:right]
+        return img
 
     def get_best_shift(self, img):
         cy, cx = ndimage.measurements.center_of_mass(img)

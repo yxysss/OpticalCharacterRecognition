@@ -61,7 +61,7 @@ def main():
     weight = './experiments/2019-12-15/conv_emnist_from_config/checkpoints/conv_emnist_from_config-10-0.35.hdf5'
 
     predictor = ConvMnistDataPredictor(model.model, data_loader.get_test_data(), mapp, config, weight)
-    # predictor.predict3('./test_images/l/0.png')
+    predictor.predict3('./test_images/h/1.png')
     # predictor.predict_from_data_set()
 
     """

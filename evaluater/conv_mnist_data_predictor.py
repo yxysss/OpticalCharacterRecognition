@@ -2,7 +2,7 @@ from base.base_evaluator import BaseEvaluator
 import numpy as np
 import cv2
 from PIL import Image
-from keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 from data_visualizer.simple_mnist_data_visualizer import SimpleMnistDataVisualizer
 from pre_processor.image_preprocessor import ImagePreProcessor
@@ -41,11 +41,11 @@ class ConvMnistDataPredictor(BaseEvaluator):
         prediction = self.model.predict(arr)[0]
         bestclass = ''
         bestconf = -1
-        for n in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]:
+        for n in range(47):
             if (prediction[n] > bestconf):
                 bestclass = str(n)
                 bestconf = prediction[n]
-        print('I think this digit is a ' + bestclass + ' with ' + str(bestconf * 100) + '% confidence.')
+        print('I think this digit is a ' + chr(self.map[int(bestclass)]) + ' with ' + str(bestconf * 100) + '% confidence.')
 
     def predict_from_data_set(self):
         print("Predicting")
@@ -93,8 +93,9 @@ class ConvMnistDataPredictor(BaseEvaluator):
         print(prediction)
         bestclass = ''
         bestconf = -1
-        for n in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]:
+        for n in range(47):
             if (prediction[n] > bestconf):
                 bestclass = str(n)
                 bestconf = prediction[n]
-        print('I think this digit is a ' + bestclass + ' with ' + str(bestconf * 100) + '% confidence.')
+
+        print('I think this digit is a ' + chr(self.map[int(bestclass)]) + ' with ' + str(bestconf * 100) + '% confidence.')

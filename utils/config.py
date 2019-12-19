@@ -28,8 +28,9 @@ def process_config(json_file):
         config.callbacks.checkpoint_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/",time.localtime()), config.exp.name, "checkpoints/")
         config.callbacks.history_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/",time.localtime()), config.exp.name, "history_params/")
     elif platform.system() == "Windows":
-        config.callbacks.tensorboard_log_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/",time.localtime()), config.exp.name, "logs/")
-        config.callbacks.checkpoint_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/",time.localtime()), config.exp.name, "checkpoints/")
-        config.callbacks.history_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/",time.localtime()), config.exp.name, "history_params/")
-
+        config.callbacks.tensorboard_log_dir = os.path.join("experiments", time.strftime("%Y-%m-%d\\", time.localtime()),
+                                                            config.exp.name, "logs\\")
+        config.callbacks.checkpoint_dir = os.path.join("experiments", time.strftime("%Y-%m-%d\\", time.localtime()),
+                                                       config.exp.name, "checkpoints\\")
+        config.callbacks.history_dir = os.path.join("experiments", time.strftime("%Y-%m-%d\\",time.localtime()), config.exp.name, "history_params\\")
     return config
