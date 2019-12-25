@@ -4,6 +4,7 @@ import cv2
 from PIL import Image
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
+
 from data_visualizer.simple_mnist_data_visualizer import SimpleMnistDataVisualizer
 from pre_processor.image_preprocessor import ImagePreProcessor
 from utils.plotter import Plotter
@@ -109,7 +110,7 @@ class ConvMnistDataPredictor(BaseEvaluator):
     def ocr(self, image):
         predicted_values = []
         image_pre_processor = ImagePreProcessor()
-        images = image_pre_processor.split_letters(image)
+        images = image_pre_processor.split_letters_optional(image)
         for image in images:
             predicted = self.predict3(image, False)
             if len(predicted) > 0:

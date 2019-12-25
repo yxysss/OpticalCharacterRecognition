@@ -13,6 +13,11 @@ from utils.dirs import create_dirs
 from utils.utils import get_args
 import numpy as np
 import sklearn.metrics as metrics
+from flask import Flask, render_template, request, redirect
+
+app = Flask(__name__,
+            static_url_path='/test_images',
+            static_folder='test_images', )
 
 
 def main():
@@ -61,7 +66,7 @@ def main():
     weight = './experiments/2019-12-15/conv_emnist_from_config/checkpoints/conv_emnist_from_config-10-0.35.hdf5'
 
     predictor = ConvMnistDataPredictor(model.model, data_loader.get_test_data(), mapp, config, weight)
-    predicted_values = predictor.ocr('./test_images/hello/hello.png')
+    predicted_values = predictor.ocr('./test_images/clau/clau.png')
     print("Predicted values")
     print(predicted_values)
     # predictor.predict3('./test_images/h/1.png')
@@ -75,5 +80,26 @@ def main():
     # predictor.confusion_matrix()
 
 
+@app.route('/')
+def hello_world():
+    return render_template('index.html', name="name")
+
+
+@app.route('/upload-image', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == "POST":
+
+        if request.files:
+            image = request.files["image"]
+            print("Fine")
+
+            print(image)
+
+            return redirect(request.url)
+
+    return render_template('index.html', name="name")
+
+
 if __name__ == '__main__':
     main()
+    # app.run()

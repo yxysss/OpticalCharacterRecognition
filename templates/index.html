@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+    .w3-row-padding img {margin-bottom: 12px}
+    .bgimg {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('data:image/jpeg;base64,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');
+        min-height: 100%;
+    }
+</style>
+<body>
+
+<!-- Sidebar with image -->
+<nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%">
+    <div class="bgimg"></div>
+</nav>
+
+<!-- Hidden Sidebar (reveals when clicked on menu icon)-->
+<nav class="w3-sidebar w3-black w3-animate-right w3-xxlarge" style="display:none;padding-top:150px;right:0;z-index:2" id="mySidebar">
+    <a href="javascript:void(0)" onclick="closeNav()" class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+        <i class="fa fa-remove"></i>
+    </a>
+    <div class="w3-bar-block w3-center">
+        <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Home</a>
+        <a href="#portfolio" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Portfolio</a>
+        <a href="#about" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">About</a>
+        <a href="#contact" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Contact</a>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="w3-main w3-padding-large" style="margin-left:40%">
+
+    <!-- Menu icon to open sidebar -->
+    <span class="w3-button w3-top w3-white w3-xxlarge w3-text-grey w3-hover-text-black" style="width:auto;right:0;" onclick="openNav()"><i class="fa fa-bars"></i></span>
+
+    <!-- Header -->
+    <header class="w3-container w3-center" style="padding:128px 16px" id="home">
+        <h1 class="w3-jumbo"><b>Optical Character Recognition</b></h1>
+        <p>Data analysis and representation.</p>
+        <img src="/w3images/profile_girl.jpg" class="w3-image w3-hide-large w3-hide-small w3-round" style="display:block;width:60%;margin:auto;">
+        <img src="/w3images/profile_girl.jpg" class="w3-image w3-hide-large w3-hide-medium w3-round" width="1000" height="1333">
+        <form action="/upload-image" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Select image</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="image" id="image">
+                    <label class="custom-file-label" for="image">Select image...</label>
+                </div>
+            </div>
+            <button class="w3-button w3-light-grey w3-padding-large w3-margin-top">
+                <i class="fa fa-upload"></i> Upload Photo
+            </button>
+        </form>
+
+    </header>
+
+    <!-- Portfolio Section -->
+    <div class="w3-padding-32 w3-content" id="portfolio">
+        <h2 class="w3-text-grey">My Portfolio</h2>
+        <hr class="w3-opacity">
+
+        <!-- Grid for photos -->
+        <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-half">
+                <img src="/test_images/h/0.png" style="width:100%">
+                <img src="/test_images/k/0.png" style="width:100%">
+                <img src="/test_images/9/0.png" style="width:100%">
+            </div>
+
+            <div class="w3-half">
+                <img src="/test_images/nik/nik.png" style="width:100%">
+                <img src="/test_images/clau/clau.png" style="width:100%">
+<!--                <img src="/w3images/wedding.jpg" style="width:100%">-->
+<!--                <img src="/w3images/p6.jpg" style="width:100%">-->
+            </div>
+            <!-- End photo grid -->
+        </div>
+        <!-- End Portfolio Section -->
+    </div>
+
+    <!-- About Section -->
+    <div class="w3-content w3-justify w3-text-grey w3-padding-32" id="about">
+        <h2>About</h2>
+        <hr class="w3-opacity">
+        <p>Some text about me. Some text about me. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing
+            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <h3 class="w3-padding-16">My Skills</h3>
+        <p class="w3-wide">Photography</p>
+        <div class="w3-light-grey">
+            <div class="w3-container w3-center w3-padding-small w3-dark-grey" style="width:95%">95%</div>
+        </div>
+        <p class="w3-wide">Web Design</p>
+        <div class="w3-light-grey">
+            <div class="w3-container w3-center w3-padding-small w3-dark-grey" style="width:85%">85%</div>
+        </div>
+        <p class="w3-wide">Photoshop</p>
+        <div class="w3-light-grey">
+            <div class="w3-container w3-center w3-padding-small w3-dark-grey" style="width:80%">80%</div>
+        </div><br>
+
+        <div class="w3-row w3-center w3-dark-grey w3-padding-16 w3-section">
+            <div class="w3-quarter w3-section">
+                <span class="w3-xlarge">14+</span><br>
+                Partners
+            </div>
+            <div class="w3-quarter w3-section">
+                <span class="w3-xlarge">55+</span><br>
+                Projects Done
+            </div>
+            <div class="w3-quarter w3-section">
+                <span class="w3-xlarge">89+</span><br>
+                Happy Clients
+            </div>
+            <div class="w3-quarter w3-section">
+                <span class="w3-xlarge">150+</span><br>
+                Meetings
+            </div>
+        </div>
+
+        <button class="w3-button w3-light-grey w3-padding-large w3-section">
+            <i class="fa fa-download"></i> Download Resume
+        </button>
+
+
+
+        <!-- Grid for pricing tables -->
+        <h3 class="w3-padding-16">My Price</h3>
+        <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-half w3-margin-bottom">
+                <ul class="w3-ul w3-center w3-card w3-hover-shadow">
+                    <li class="w3-dark-grey w3-xlarge w3-padding-32">Basic</li>
+                    <li class="w3-padding-16">Web Design</li>
+                    <li class="w3-padding-16">Photography</li>
+                    <li class="w3-padding-16">5GB Storage</li>
+                    <li class="w3-padding-16">Mail Support</li>
+                    <li class="w3-padding-16">
+                        <h2>$ 10</h2>
+                        <span class="w3-opacity">per month</span>
+                    </li>
+                    <li class="w3-light-grey w3-padding-24">
+                        <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="w3-half">
+                <ul class="w3-ul w3-center w3-card w3-hover-shadow">
+                    <li class="w3-black w3-xlarge w3-padding-32">Pro</li>
+                    <li class="w3-padding-16">Web Design</li>
+                    <li class="w3-padding-16">Photography</li>
+                    <li class="w3-padding-16">50GB Storage</li>
+                    <li class="w3-padding-16">Endless Support</li>
+                    <li class="w3-padding-16">
+                        <h2>$ 25</h2>
+                        <span class="w3-opacity">per month</span>
+                    </li>
+                    <li class="w3-light-grey w3-padding-24">
+                        <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
+                    </li>
+                </ul>
+            </div>
+            <!-- End Grid/Pricing tables -->
+        </div>
+
+        <!-- End About Section -->
+    </div>
+
+    <!-- Contact Section -->
+    <div class="w3-padding-32 w3-content w3-text-grey" id="contact" style="margin-bottom:64px">
+        <h2>Contact Me</h2>
+        <hr class="w3-opacity">
+
+        <div class="w3-section">
+            <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Chicago, US</p>
+            <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +00 151515</p>
+            <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: mail@mail.com</p>
+        </div>
+
+        <!-- Image of location/map -->
+
+        <p>Lets get in touch. Send me a message:</p>
+        <form action="/action_page.php" target="_blank">
+            <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
+            <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Email" required name="Email"></p>
+            <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Subject" required name="Subject"></p>
+            <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required name="Message"></p>
+            <p>
+                <button class="w3-button w3-light-grey w3-padding-large" type="submit">
+                    <i class="fa fa-paper-plane"></i> SEND MESSAGE
+                </button>
+            </p>
+        </form>
+        <!-- End Contact Section -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-opacity w3-xlarge" style="margin:-24px">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+        <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+        <!-- End footer -->
+    </footer>
+
+    <!-- END PAGE CONTENT -->
+</div>
+
+<script>
+    // Open and close sidebar
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "60%";
+        document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+</script>
+
+</body>
+</html>

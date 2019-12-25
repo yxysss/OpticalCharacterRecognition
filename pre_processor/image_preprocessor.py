@@ -7,6 +7,7 @@ from scipy import ndimage
 
 from constants import HEIGHT, WIDTH
 from utils.plotter import Plotter
+import matplotlib.pyplot as plt
 
 
 class ImagePreProcessor():
@@ -187,4 +188,62 @@ class ImagePreProcessor():
             cv2.imwrite("cropped{0}.jpg".format(i), border)
             i += 1
         cv2.imwrite("boxes.jpg", img_boxes)
+        return images
+
+    def split_letters_optional(self, img):
+        images = []
+        image = cv2.imread(img)
+        height, width, depth = image.shape
+
+        # resizing the image to find spaces better
+        image = cv2.resize(image, dsize=(width * 5, height * 4), interpolation=cv2.INTER_CUBIC)
+
+        # grayscale
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+        # binary
+        ret, thresh = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)
+
+        # dilation
+        kernel = np.ones((5, 5), np.uint8)
+        img_dilation = cv2.dilate(thresh, kernel, iterations=1)
+
+        # adding GaussianBlur
+        gsblur = cv2.GaussianBlur(img_dilation, (5, 5), 0)
+
+        # find contours
+        ctrs, hier = cv2.findContours(gsblur.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        m = list()
+        # sort contours
+        sorted_ctrs = sorted(ctrs, key=lambda ctr: cv2.boundingRect(ctr)[0])
+        pchl = list()
+        dp = image.copy()
+
+        for i, ctr in enumerate(sorted_ctrs):
+            # Get bounding box
+            x, y, w, h = cv2.boundingRect(ctr)
+            cv2.rectangle(dp, (x - 10, y - 10), (x + w + 10, y + h + 10), (90, 0, 255), 9)
+            crop_img = image[y:y + h, x:x + w]
+            bordersize = 700
+            border = cv2.copyMakeBorder(
+                crop_img,
+                top=bordersize,
+                bottom=bordersize,
+                left=bordersize,
+                right=bordersize,
+                borderType=cv2.BORDER_CONSTANT,
+                value=[255, 255, 255]
+            )
+            images.append(border)
+            # border = cv2.resize(border, dsize=(28,28), interpolation=cv2.INTER_CUBIC)
+            cv2.imwrite("cropped{0}.jpg".format(i), border)
+
+            # roi = cv2.cvtColor(roi,cv2.COLOR_BGR2GRAY)
+            # roi = np.array(roi)
+            plt.imshow(border)
+            plt.show()
+        cv2.imwrite("boxes.jpg", dp)
+        plt.imshow(dp)
+        plt.show()
         return images
