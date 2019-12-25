@@ -45,7 +45,8 @@ class ConvMnistDataPredictor(BaseEvaluator):
             if (prediction[n] > bestconf):
                 bestclass = str(n)
                 bestconf = prediction[n]
-        print('I think this digit is a ' + chr(self.map[int(bestclass)]) + ' with ' + str(bestconf * 100) + '% confidence.')
+        print('I think this digit is a ' + chr(self.map[int(bestclass)]) + ' with ' + str(
+            bestconf * 100) + '% confidence.')
 
     def predict_from_data_set(self):
         print("Predicting")
@@ -80,22 +81,37 @@ class ConvMnistDataPredictor(BaseEvaluator):
         #         bestconf = prediction[n]
         # print('I think this digit is a ' + bestclass + ' with ' + str(bestconf * 100) + '% confidence.')
 
-    def predict3(self, image):
+    def predict3(self, image, readImage=True):
         image_pre_processor = ImagePreProcessor()
-        img = image_pre_processor.execute(image)
-        img = np.resize(img, (28, 28, 1))
-        im2arr = np.array(img)
-        im2arr = np.expand_dims(im2arr, axis=0)
-        im2arr = im2arr.astype('float32')
-        im2arr /= 255
-        prediction = self.model.predict(im2arr)[0]
-        print("Prediction")
-        print(prediction)
-        bestclass = ''
-        bestconf = -1
-        for n in range(47):
-            if (prediction[n] > bestconf):
-                bestclass = str(n)
-                bestconf = prediction[n]
+        img = image_pre_processor.execute(image, readImage)
+        if len(img) > 0:
+            img = np.resize(img, (28, 28, 1))
+            im2arr = np.array(img)
+            im2arr = np.expand_dims(im2arr, axis=0)
+            im2arr = im2arr.astype('float32')
+            im2arr /= 255
+            prediction = self.model.predict(im2arr)[0]
+            print("Prediction")
+            print(prediction)
+            bestclass = ''
+            bestconf = -1
+            for n in range(47):
+                if (prediction[n] > bestconf):
+                    bestclass = str(n)
+                    bestconf = prediction[n]
 
-        print('I think this digit is a ' + chr(self.map[int(bestclass)]) + ' with ' + str(bestconf * 100) + '% confidence.')
+            print('I think this digit is a ' + chr(self.map[int(bestclass)]) + ' with ' + str(
+                bestconf * 100) + '% confidence.')
+            return chr(self.map[int(bestclass)])
+        else:
+            return ""
+
+    def ocr(self, image):
+        predicted_values = []
+        image_pre_processor = ImagePreProcessor()
+        images = image_pre_processor.split_letters(image)
+        for image in images:
+            predicted = self.predict3(image, False)
+            if len(predicted) > 0:
+                predicted_values.append(predicted)
+        return predicted_values
