@@ -12,14 +12,29 @@ pip install -r requirements.txt
 #### Run model trainer
 The configuration file conv_emnist_from_config_train.json has the "custom_weight" parameter set to false. Therefore the model will be trained
 ```
+"evaluator": {
+    "name": "conv_mnist_data_predictor.ConvMnistDataPredictor",
+    "weight" : "",
+    "custom_weight" : false
+  }
+```
+
+```
 python main.py -c configs/conv_emnist_from_config_train.json -i test_images/hello/hello.png
 ```
 #### Run model predictor
 The configuration file conv_emnist_from_config.json has the "custom_weight" parameter set to true. Therefore the model will use weights already trained and predict the image. (Don't forget to add the path of the file containing the trained weights in the configuration file)
 ```
+"evaluator": {
+    "name": "conv_mnist_data_predictor.ConvMnistDataPredictor",
+    "weight" : "./experiments/2019-12-15/conv_emnist_from_config/checkpoints/conv_emnist_from_config-10-0.35.hdf5",
+    "custom_weight" : true
+  }
+```
+```
 python main.py -c configs/conv_emnist_from_config.json -i test_images/hello/hello.png
 ```
-To quickly predict an image with weights already trained execute the following script with the image path
+To quickly predict an image with our best weights already trained execute the following script with the image path
  ```
  python predict_image.py -i test_images/hello/hello.png
  ```
