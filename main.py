@@ -29,39 +29,43 @@ def main():
     create_dirs([config.callbacks.tensorboard_log_dir, config.callbacks.checkpoint_dir, config.callbacks.history_dir])
 
     print('Create the data generator.')
-    data_loader = ConvEMnistDataLoader(config)
+    data_loader = ConvEMnistDataLoader(config)  # Load data set
 
     print('Some data visualization')
-    X_train, y_train = data_loader.get_train_data()
+    X_train, y_train = data_loader.get_train_data()  # Get training data
     print("ytrain")
     print(y_train.shape)
-    mapp = data_loader.get_map()
+    mapp = data_loader.get_map()  # Get map dictionary (Refer to emnist-balanced-mapping.txt file)
     data_visualizer = SimpleMnistDataVisualizer(X_train, y_train, mapp)
-    data_visualizer.plot_first_digit()
-    data_visualizer.plot_range()
+    data_visualizer.plot_first_digit()  # Plot first character of training set
+    data_visualizer.plot_range()  # Plot several characters
 
     print('Create the model.')
-    model = ConvEMnistModel(config)
+    model = ConvEMnistModel(config)  # Create the model based on configuration file
 
     print("Model Summary")
-    model.model.summary()
+    model.model.summary()  # Print a summary of the model with the respective parameters
+
+    # Custom weight to use instead of training the model
+    weight = config.evaluator.weight
 
     print('Create the trainer')
-    # trainer = ConvMnistModelTrainer(model.model, data_loader.get_train_data(), config)
+    trainer = ConvMnistModelTrainer(model.model, data_loader.get_train_data(), config)
 
-    print('Start training the model.')
-    # if not config.evaluator.custom_weight:
-    # trainer.train()
+    if not config.evaluator.custom_weight:
+        print('Start training the model.')
+        # if not config.evaluator.custom_weight:
+        trainer.train()
 
-    print("Plot loss and accuracy in training model")
-    data_visualizer.plot_loss_acc()
+        print("Plot loss and accuracy in training model")
+        data_visualizer.plot_loss_acc()
 
-    print("Finish training")
+        print("Finish training")
+
     print("Predict")
-    weight = './experiments/2019-12-15/conv_emnist_from_config/checkpoints/conv_emnist_from_config-10-0.35.hdf5'
 
     predictor = ConvMnistDataPredictor(model.model, data_loader.get_test_data(), mapp, config, weight)
-    predicted_values = predictor.ocr('./test_images/clau/clau.png')
+    predicted_values = predictor.ocr('./test_images/data_representation/0.png')
     print("Predicted values")
     print(predicted_values)
     # predictor.predict3('./test_images/h/1.png')

@@ -12,7 +12,12 @@ class Plotter:
         plt.show()
 
     def plotgraph(self, epochs, acc, val_acc):
-        # Plot training & validation accuracy values
+        """
+        Plot training & validation accuracy values
+        :param epochs: number of epochs
+        :param acc:
+        :param val_acc:
+        """
         plt.plot(epochs, acc, 'b')
         plt.plot(epochs, val_acc, 'r')
         plt.title('Model accuracy')

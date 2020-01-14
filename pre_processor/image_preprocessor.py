@@ -16,6 +16,12 @@ class ImagePreProcessor():
         self.plotter = Plotter()
 
     def execute(self, image, readImage=True):
+        """
+        Pre process image to make it look as close as possible to emnist data set
+        :param image:
+        :param readImage:
+        :return:
+        """
         # create an array where we can store our picture
         images = np.zeros((1, 784))
         # and the correct values
@@ -27,13 +33,13 @@ class ImagePreProcessor():
         else:
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             (threshi, img_bw) = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-        self.plotter.plot_image(gray)
-        gray = self.cut(gray)
+        self.plotter.plot_image(gray) # Plot image in gray scale
+        gray = self.cut(gray) # Cut image
         if len(gray) > 0:
             # resize the images and invert it (black background)
             gray = cv2.resize(255 - gray, (28, 28))
-            self.plotter.plot_image(gray)
-            cv2.imwrite("test_images/image_1.png", gray)
+            self.plotter.plot_image(gray) # Plot cut image
+            cv2.imwrite("test_images/image_1.png", gray) # Save image for testing purposes
             # better black and white version
             (thresh, gray) = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
             self.plotter.plot_image(gray)
@@ -100,6 +106,11 @@ class ImagePreProcessor():
         return im
 
     def cut(self, img):
+        """
+        Cut image
+        :param img:
+        :return:
+        """
         left = img.shape[1]
         top = img.shape[0]
         right, bottom = 0, 0
@@ -134,63 +145,22 @@ class ImagePreProcessor():
         return shifted
 
     def rotate(self, image):
+        """
+        Rotate image and flip it
+        :param image:
+        :return:
+        """
         image = image.reshape([HEIGHT, WIDTH])
         image = np.fliplr(image)
         image = np.rot90(image)
         return image
 
-    def split_letters(self, image):
-        images = []
-        height = 512
-        width = 512
-        blank_image = np.zeros((height, width, 1), np.uint8) + 255
-        img = cv2.imread(image)
-        original = img.copy()
-        print("img shape=", img.shape)
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        ret, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_OTSU)
-        cv2.imshow('gray', gray)
-        cv2.imshow('thresh', thresh)
-        cv2.imwrite("gray.jpg", gray)
-        cv2.imwrite("thresh.jpg", thresh)
-        cv2.imwrite("white.jpg", blank_image)
-        # contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-        contours, hierarchy = cv2.findContours(gray.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        cv2.drawContours(img, contours, -1, (0, 0, 255), 2)
-        cv2.imwrite("contours.jpg", img)
-
-        bb_list = []
-        for c in contours:
-            bb = cv2.boundingRect(c)
-            # save all boxes except the one that has the exact dimensions of the image (x, y, width, height)
-            if bb[0] == 0 and bb[1] == 0 and bb[2] == img.shape[1] and bb[3] == img.shape[0]:
-                continue
-            bb_list.append(bb)
-
-        img_boxes = img.copy()
-        i = 0
-        bb_list.sort(key=lambda x: x[0])
-        for bb in bb_list:
-            x, y, w, h = bb
-            cv2.rectangle(img_boxes, (x, y), (x + w, y + h), (0, 0, 255), 2)
-            crop_img = original[y:y + h, x:x + w]
-            bordersize = 100
-            border = cv2.copyMakeBorder(
-                crop_img,
-                top=bordersize,
-                bottom=bordersize,
-                left=bordersize,
-                right=bordersize,
-                borderType=cv2.BORDER_CONSTANT,
-                value=[255, 255, 255]
-            )
-            images.append(border)
-            cv2.imwrite("cropped{0}.jpg".format(i), border)
-            i += 1
-        cv2.imwrite("boxes.jpg", img_boxes)
-        return images
-
-    def split_letters_optional(self, img):
+    def split_letters(self, img):
+        """
+        Method that takes an images and splits all the letters in the image, it does this by using contours
+        :param image:
+        :return:
+        """
         images = []
         image = cv2.imread(img)
         height, width, depth = image.shape
