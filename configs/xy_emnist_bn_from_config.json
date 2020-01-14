@@ -1,12 +1,12 @@
 {
   "exp": {
-    "name": "conv_emnist_from_config"
+    "name": "xy_emnist_bn_from_config"
   },
   "data_loader": {
     "name": "conv_emnist_data_loader.ConvEMnistDataLoader"
   },
   "model": {
-    "name": "conv_emnist_model.ConvEMnistModel",
+    "name": "xy_emnist_model_bn.XyEMnistModelBN",
     "learning_rate": 0.001,
     "optimizer": "adam",
     "loss": "categorical_crossentropy"

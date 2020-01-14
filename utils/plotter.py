@@ -11,12 +11,12 @@ class Plotter:
         plt.imshow(image)  # See in grayscale
         plt.show()
 
-    def plotgraph(self, epochs, acc, val_acc):
+    def plotgraph(self, epochs, rate, val_rate, ylabel):
         # Plot training & validation accuracy values
-        plt.plot(epochs, acc, 'b')
-        plt.plot(epochs, val_acc, 'r')
-        plt.title('Model accuracy')
-        plt.ylabel('Accuracy')
+        plt.plot(epochs, rate, 'b')
+        plt.plot(epochs, val_rate, 'r')
+        plt.title("Model " + ylabel)
+        plt.ylabel(ylabel)
         plt.xlabel('Epoch')
         plt.legend(['Train', 'Val'], loc='upper left')
         plt.show()

@@ -1,6 +1,6 @@
 from base.base_trainer import BaseTrain
 import os
-from tensorflow.keras.callbacks import ModelCheckpoint, TensorBoard, History, CSVLogger
+from tensorflow.python.keras.callbacks import ModelCheckpoint, TensorBoard, History, CSVLogger
 
 
 class ConvMnistModelTrainer(BaseTrain):

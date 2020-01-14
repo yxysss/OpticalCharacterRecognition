@@ -6,6 +6,9 @@ from evaluater.conv_mnist_data_predictor import ConvMnistDataPredictor
 from models.conv_emnist_model import ConvEMnistModel
 from models.conv_mnist_model import ConvMnistModel
 from models.simple_mnist_model import SimpleMnistModel
+from models.xy_emnist_model import XyEMnistModel
+from models.xy_emnist_model_x import XyEMnistModelX
+from models.xy_emnist_model_bn import XyEMnistModelBN
 from trainers.conv_mnist_trainer import ConvMnistModelTrainer
 from trainers.simple_mnist_trainer import SimpleMnistModelTrainer
 from utils.config import process_config
@@ -41,7 +44,7 @@ def main():
     data_visualizer.plot_range()
 
     print('Create the model.')
-    model = ConvEMnistModel(config)
+    model = XyEMnistModelX(config)
 
     print("Model Summary")
     model.model.summary()
@@ -58,10 +61,11 @@ def main():
 
     print("Finish training")
     print("Predict")
-    weight = './experiments/2019-12-15/conv_emnist_from_config/checkpoints/conv_emnist_from_config-10-0.35.hdf5'
+    weight = './experiments/2019-12-25/xy_emnist_from_config/checkpoints/xy_emnist_from_config-18-0.32.hdf5'
+    weight = './experiments/2019-12-25/xy_emnist_x_from_config/checkpoints/xy_emnist_x_from_config-11-0.32.hdf5'
 
     predictor = ConvMnistDataPredictor(model.model, data_loader.get_test_data(), mapp, config, weight)
-    predictor.predict3('./test_images/h/1.png')
+    predictor.predict3('./test_images/0/1.png')
     # predictor.predict_from_data_set()
 
     """
