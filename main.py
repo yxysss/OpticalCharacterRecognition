@@ -13,6 +13,11 @@ from utils.dirs import create_dirs
 from utils.utils import get_args
 import numpy as np
 import sklearn.metrics as metrics
+from flask import Flask, render_template, request, redirect
+
+app = Flask(__name__,
+            static_url_path='/test_images',
+            static_folder='test_images', )
 
 
 def main():
@@ -31,7 +36,7 @@ def main():
     print('Create the data generator.')
     data_loader = ConvEMnistDataLoader(config)
 
-    # print('Some data visualization')
+    print('Some data visualization')
     X_train, y_train = data_loader.get_train_data()
     print("ytrain")
     print(y_train.shape)
@@ -47,11 +52,11 @@ def main():
     model.model.summary()
 
     print('Create the trainer')
-    trainer = ConvMnistModelTrainer(model.model, data_loader.get_train_data(), config)
+    # trainer = ConvMnistModelTrainer(model.model, data_loader.get_train_data(), config)
 
     print('Start training the model.')
-    if not config.evaluator.custom_weight:
-        trainer.train()
+    # if not config.evaluator.custom_weight:
+    # trainer.train()
 
     print("Plot loss and accuracy in training model")
     data_visualizer.plot_loss_acc()
@@ -61,16 +66,40 @@ def main():
     weight = './experiments/2019-12-15/conv_emnist_from_config/checkpoints/conv_emnist_from_config-10-0.35.hdf5'
 
     predictor = ConvMnistDataPredictor(model.model, data_loader.get_test_data(), mapp, config, weight)
-    predictor.predict3('./test_images/h/1.png')
+    predicted_values = predictor.ocr('./test_images/clau/clau.png')
+    print("Predicted values")
+    print(predicted_values)
+    # predictor.predict3('./test_images/h/1.png')
     # predictor.predict_from_data_set()
 
     """
     Evaluate model with test set
     """
-    predictor.evaluate_model()
+    # predictor.evaluate_model()
+    #
+    # predictor.confusion_matrix()
 
-    predictor.confusion_matrix()
+
+@app.route('/')
+def hello_world():
+    return render_template('index.html', name="name")
+
+
+@app.route('/upload-image', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == "POST":
+
+        if request.files:
+            image = request.files["image"]
+            print("Fine")
+
+            print(image)
+
+            return redirect(request.url)
+
+    return render_template('index.html', name="name")
 
 
 if __name__ == '__main__':
     main()
+    # app.run()
