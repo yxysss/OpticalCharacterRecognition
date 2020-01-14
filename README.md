@@ -1,6 +1,52 @@
-# Optical-Character-Recognition
-Optical Character Recognition System, employing Convolutional Neural Network models
+# Optical Character Recognition
+Optical Character Recognition System, employing Convolutional Neural Network models. Data Representation, Reduction and Analysis course.
 
+## Install
+All requirements can be installed using pip.
+```
+pip install -r requirements.txt
+```
+## Run
+A configuration file needs to be passed in order to run the project, this configuration file contains the parameters for building, training and evaluating the model (Refer to configs/conv_emnist_from_config.json)
+```
+python main.py -c configs/conv_emnist_from_config.json
+```
+Configuration file example
+```
+{
+  "exp": {
+    "name": "conv_emnist_from_config"
+  },
+  "data_loader": {
+    "name": "conv_emnist_data_loader.ConvEMnistDataLoader"
+  },
+  "model": {
+    "name": "conv_emnist_model.ConvEMnistModel",
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "loss": "categorical_crossentropy"
+  },
+  "trainer": {
+    "name": "simple_mnist_trainer.SimpleMnistModelTrainer",
+    "num_epochs": 10,
+    "batch_size": 512,
+    "validation_split": 0.25,
+    "verbose_training": true
+  },
+  "evaluator": {
+    "name": "conv_mnist_data_predictor.ConvMnistDataPredictor",
+    "custom_weight" : true
+  },
+  "callbacks": {
+    "checkpoint_monitor": "val_loss",
+    "checkpoint_mode": "min",
+    "checkpoint_save_best_only": true,
+    "checkpoint_save_weights_only": true,
+    "checkpoint_verbose": true,
+    "tensorboard_write_graph": true
+  }
+}
+```
 ## Project Structure
 The following structure was based on this template : https://github.com/Ahmkel/Keras-Project-Template
 ```
