@@ -8,9 +8,17 @@ pip install -r requirements.txt
 ```
 ## Run
 A configuration file needs to be passed in order to run the project, this configuration file contains the parameters for building, training and evaluating the model (Refer to configs/conv_emnist_from_config.json)
+#### Run model trainer
+The configuration file conv_emnist_from_config_train.json has the "custom_weight" parameter set to false. Therefore the model will be trained
+```
+python main.py -c configs/conv_emnist_from_config_train.json
+```
+#### Run model predictor
+The configuration file conv_emnist_from_config.json has the "custom_weight" parameter set to true. Therefore the model will use weights already trained and predict the image
 ```
 python main.py -c configs/conv_emnist_from_config.json
 ```
+#### Configuration file
 Configuration file example
 ```
 {
