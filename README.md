@@ -1,6 +1,7 @@
 # Optical Character Recognition
 Optical Character Recognition System, employing Convolutional Neural Network models. Data Representation, Reduction and Analysis course.
-
+![](test_images/data_representation/0.png)
+![](boxes_data.jpg)
 ## Install
 All requirements can be installed using pip.
 ```
@@ -38,6 +39,8 @@ To quickly predict an image with our best weights already trained execute the fo
  ```
  python predict_image.py -i test_images/hello/hello.png
  ```
+We recommend using the following drawing tool to draw the characters:
+https://drawisland.com/
 #### Configuration file
 Configuration file example
 ```
