@@ -31,6 +31,8 @@ class ConvEMnistModel(BaseModel):
 
         # Add a "hidden layer with 128 neurons and a RELU activation function"
         self.model.add(Dense(128, activation='relu'))
+
+        # Dropout layer to prevent overfitting
         self.model.add(Dropout(.5))
 
         # Finally we have our output layer with 10 neurons for our 10 classes,

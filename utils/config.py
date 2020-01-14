@@ -3,6 +3,7 @@ from dotmap import DotMap
 import os
 import time
 import platform
+import cv2
 
 
 def get_config_from_json(json_file):
@@ -24,13 +25,25 @@ def get_config_from_json(json_file):
 def process_config(json_file):
     config, _ = get_config_from_json(json_file)
     if platform.system() == "Darwin":
-        config.callbacks.tensorboard_log_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/",time.localtime()), config.exp.name, "logs/")
-        config.callbacks.checkpoint_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/",time.localtime()), config.exp.name, "checkpoints/")
-        config.callbacks.history_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/",time.localtime()), config.exp.name, "history_params/")
+        config.callbacks.tensorboard_log_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/", time.localtime()),
+                                                            config.exp.name, "logs/")
+        config.callbacks.checkpoint_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/", time.localtime()),
+                                                       config.exp.name, "checkpoints/")
+        config.callbacks.history_dir = os.path.join("experiments", time.strftime("%Y-%m-%d/", time.localtime()),
+                                                    config.exp.name, "history_params/")
     elif platform.system() == "Windows":
-        config.callbacks.tensorboard_log_dir = os.path.join("experiments", time.strftime("%Y-%m-%d\\", time.localtime()),
+        config.callbacks.tensorboard_log_dir = os.path.join("experiments",
+                                                            time.strftime("%Y-%m-%d\\", time.localtime()),
                                                             config.exp.name, "logs\\")
         config.callbacks.checkpoint_dir = os.path.join("experiments", time.strftime("%Y-%m-%d\\", time.localtime()),
                                                        config.exp.name, "checkpoints\\")
-        config.callbacks.history_dir = os.path.join("experiments", time.strftime("%Y-%m-%d\\",time.localtime()), config.exp.name, "history_params\\")
+        config.callbacks.history_dir = os.path.join("experiments", time.strftime("%Y-%m-%d\\", time.localtime()),
+                                                    config.exp.name, "history_params\\")
     return config
+
+
+def process_image(image):
+    img = cv2.imread(image)
+    if img is None:
+        raise Exception('image not found')
+    return image
