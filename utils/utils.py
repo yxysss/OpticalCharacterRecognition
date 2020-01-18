@@ -9,5 +9,11 @@ def get_args():
         metavar='C',
         default='None',
         help='The Configuration file')
+    argparser.add_argument(
+        '-i', '--image',
+        dest='image',
+        metavar='I',
+        default='None',
+        help='Path of image')
     args = argparser.parse_args()
     return args

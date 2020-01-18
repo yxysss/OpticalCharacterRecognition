@@ -1,6 +1,6 @@
 from base.base_model import BaseModel
-from keras.models import Sequential
-from keras.layers import Input, Dense
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Input, Dense
 
 
 class SimpleMnistModel(BaseModel):
@@ -19,3 +19,8 @@ class SimpleMnistModel(BaseModel):
             optimizer=self.config.model.optimizer,
             metrics=['acc'],
         )
+
+    def build_mode_datacamp(self):
+        self.model = Sequential()
+
+

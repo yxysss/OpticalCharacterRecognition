@@ -1,0 +1,33 @@
+{
+  "exp": {
+    "name": "conv_emnist_from_config"
+  },
+  "data_loader": {
+    "name": "conv_emnist_data_loader.ConvEMnistDataLoader"
+  },
+  "model": {
+    "name": "conv_emnist_model.ConvEMnistModel",
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "loss": "categorical_crossentropy"
+  },
+  "trainer": {
+    "name": "simple_mnist_trainer.SimpleMnistModelTrainer",
+    "num_epochs": 25,
+    "batch_size": 512,
+    "validation_split": 0.25,
+    "verbose_training": true
+  },
+  "evaluator": {
+    "name": "conv_mnist_data_predictor.ConvMnistDataPredictor",
+    "custom_weight" : false
+  },
+  "callbacks": {
+    "checkpoint_monitor": "val_loss",
+    "checkpoint_mode": "min",
+    "checkpoint_save_best_only": true,
+    "checkpoint_save_weights_only": true,
+    "checkpoint_verbose": true,
+    "tensorboard_write_graph": true
+  }
+}
