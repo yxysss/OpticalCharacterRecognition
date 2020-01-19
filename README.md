@@ -21,7 +21,7 @@ The configuration file conv_emnist_from_config_train.json has the "custom_weight
 ```
 
 ```
-python main.py -c configs/conv_emnist_from_config_train.json -i test_images/hello/hello.png
+python main.py -c configs/conv_emnist_from_config_train.json -i test_images/test/test.png
 ```
 #### Run model predictor
 The configuration file conv_emnist_from_config.json has the "custom_weight" parameter set to true. Therefore the model will use weights already trained and predict the image. (Don't forget to add the path of the file containing the trained weights in the configuration file)
@@ -33,11 +33,11 @@ The configuration file conv_emnist_from_config.json has the "custom_weight" para
   }
 ```
 ```
-python main.py -c configs/conv_emnist_from_config.json -i test_images/hello/hello.png
+python main.py -c configs/conv_emnist_from_config.json -i test_images/test/test.png
 ```
 To quickly predict an image with our best weights already trained execute the following script with the image path
  ```
- python predict_image.py -i test_images/hello/hello.png
+ python predict_image.py -i test_images/test/test.png
  ```
 We recommend using the following drawing tool to draw the characters:
 https://drawisland.com/
