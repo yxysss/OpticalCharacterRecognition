@@ -2,7 +2,7 @@ from base.base_evaluator import BaseEvaluator
 import numpy as np
 import cv2
 from PIL import Image
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.python.keras.preprocessing.image import ImageDataGenerator
 
 from data_visualizer.simple_mnist_data_visualizer import SimpleMnistDataVisualizer
 from pre_processor.image_preprocessor import ImagePreProcessor

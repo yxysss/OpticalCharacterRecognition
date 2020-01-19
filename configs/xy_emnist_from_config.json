@@ -1,12 +1,12 @@
 {
   "exp": {
-    "name": "conv_emnist_from_config"
+    "name": "xy_emnist_from_config"
   },
   "data_loader": {
     "name": "conv_emnist_data_loader.ConvEMnistDataLoader"
   },
   "model": {
-    "name": "conv_emnist_model.ConvEMnistModel",
+    "name": "xy_emnist_model.XyEMnistModel",
     "learning_rate": 0.001,
     "optimizer": "adam",
     "loss": "categorical_crossentropy"
@@ -20,7 +20,7 @@
   },
   "evaluator": {
     "name": "conv_mnist_data_predictor.ConvMnistDataPredictor",
-    "custom_weight" : false
+    "custom_weight" : true
   },
   "callbacks": {
     "checkpoint_monitor": "val_loss",
