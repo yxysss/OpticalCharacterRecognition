@@ -5,7 +5,7 @@ from tensorflow.python.keras.layers import Input, Dense, Conv2D, MaxPooling2D, D
 from constants import HEIGHT, WIDTH
 
 
-class XyEMnistModelX(BaseModel):
+class XyEMnitModelX(BaseModel):
     def __init__(self, config):
         super(XyEMnistModelX, self).__init__(config)
         self.build_model()

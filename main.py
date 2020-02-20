@@ -6,6 +6,7 @@ from evaluater.conv_mnist_data_predictor import ConvMnistDataPredictor
 from models.conv_emnist_model import ConvEMnistModel
 from models.conv_mnist_model import ConvMnistModel
 from models.simple_mnist_model import SimpleMnistModel
+from models.xy_emnist_model_x import XyEMnistModelX
 from trainers.conv_mnist_trainer import ConvMnistModelTrainer
 from trainers.simple_mnist_trainer import SimpleMnistModelTrainer
 from utils.config import process_config, process_image
@@ -43,7 +44,7 @@ def main():
     data_visualizer.plot_range()  # Plot several characters
 
     print('Create the model.')
-    model = ConvEMnistModel(config)  # Create the model based on configuration file
+    model = XyEMnistModelX(config)  # Create the model based on configuration file
 
     print("Model Summary")
     model.model.summary()  # Print a summary of the model with the respective parameters

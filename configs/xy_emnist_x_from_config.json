@@ -20,6 +20,7 @@
   },
   "evaluator": {
     "name": "conv_mnist_data_predictor.ConvMnistDataPredictor",
+    "weight" : "./experiments/2019-12-25/xy_emnist_x_from_config/checkpoints/xy_emnist_x_from_config-11-0.32.hdf5",
     "custom_weight" : true
   },
   "callbacks": {
