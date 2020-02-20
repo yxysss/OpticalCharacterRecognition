@@ -115,3 +115,5 @@ The following structure was based on this template : https://github.com/Ahmkel/K
      ├── dirs.py        - util functions for creating directories.
      └── utils.py       - util functions for parsing arguments.
 ```
+=======
+# OpticalCharacterRecognition
